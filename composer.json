@@ -1,0 +1,36 @@
+{
+	"name": "duncrow-gmbh/polymode",
+	"description": "Polymode Bundle for Contao Open Source CMS",
+	"keywords": ["contao", "polymode"],
+	"type": "contao-bundle",
+	"homepage": "https://duncrow.com",
+	"license": "LGPL-3.0+",
+	"authors": [
+		{
+			"name": "Duncrow GmbH",
+			"email": "office@duncrow.com",
+			"homepage": "https://duncrow.com"
+		},
+		{
+			"name": "Clemens Martin",
+			"email": "clemens@duncrow.com",
+			"homepage": "https://duncrow.com",
+			"role": "Developer"
+		}
+	],
+	"require": {
+		"php": "^7.2",
+		"contao/core-bundle": "^4.4"
+	},
+	"require-dev": {
+		"contao/manager-plugin": "^2.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"Duncrow\\PolymodeBundle\\": "src/"
+		}
+	},
+	"extra": {
+		"contao-manager-plugin": "Duncrow\\PolymodeBundle\\ContaoManager\\Plugin"
+	}
+}

@@ -1,0 +1,71 @@
+<?php
+$buildFile = \FilesModel::findByUuid($this->polymode_buildFile)->path;
+?>
+<script type="text/javascript">
+    var buildFile = "<?= $buildFile ?>";
+</script>
+
+<script src="bundles/polymode/js/UnityLoader.js"></script>
+<script>
+    var gameInstance = UnityLoader.instantiate("gameContainer", buildFile);
+    var scaleToFit;
+    try {
+        scaleToFit = !!JSON.parse("");
+    } catch (e) {
+        scaleToFit = true;
+    }
+
+    function onResize() {
+        var canvas = gameInstance.Module.canvas;
+        var container = gameInstance.container;
+        var w;
+        var h;
+
+        if (scaleToFit) {
+            w = window.innerWidth;
+            h = window.innerHeight;
+
+            var r = 768 / 1366;
+
+            if (w * r > window.innerHeight) {
+                w = Math.min(w, Math.ceil(h / r));
+            }
+            h = Math.floor(w * r);
+        } else {
+            w = 1366;
+            h = 768;
+        }
+
+        container.style.width = "100%";
+        container.style.height = "650px";
+    }
+
+    window.addEventListener('resize', onResize);
+    $(function () {
+        onResize();
+    })
+</script>
+<style>
+    div#gameContainer {
+        background: <?php if($this->polymode_loadingscreen_background): ?><?= '#'.$this->polymode_loadingscreen_background ?><?php else: ?>#0D101F<?php endif; ?> !important;
+    }
+
+    div#gameContainer canvas {
+        position: absolute;
+    }
+
+    div#gameContainer[data-pixelated='true'] canvas {
+        image-rendering: optimizeSpeed;
+        image-rendering: -webkit-crisp-edges;
+        image-rendering: -moz-crisp-edges;
+        image-rendering: -o-crisp-edges;
+        image-rendering: crisp-edges;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: optimize-contrast;
+        image-rendering: pixelated;
+        -ms-interpolation-mode: nearest-neighbor;
+    }
+</style>
+
+<div id="gameContainer" data-pixelated=""></div>
+
