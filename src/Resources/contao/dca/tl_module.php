@@ -7,7 +7,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['polymode_buildFile'] = array
 (
     'exclude'                 => true,
     'inputType'               => 'fileTree',
-    'eval'                    => array('fieldType'=>'radio', 'mandatory'=>true, 'files'=>true, 'filesOnly'=>true, 'tl_class'=>'w50', 'extensions'=>'json'),
+    'eval'                    => array('fieldType'=>'radio', 'mandatory'=>true, 'files'=>true, 'filesOnly'=>true, 'tl_class'=>'w50', 'extensions'=>'js'),
     'sql'                     => "binary(16) NULL"
 );
 
@@ -15,7 +15,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['polymode_loadingscreen_background'] =
 (
     'exclude'                 => true,
     'inputType'               => 'text',
-    'eval'                    => array('maxlength'=>6, 'disabled'=>true, 'colorpicker'=>true, 'isHexColor'=>true, 'decodeEntities'=>true, 'tl_class'=>'w50 wizard'),
+    'eval'                    => array('maxlength'=>6, 'disabled'=>false, 'colorpicker'=>true, 'isHexColor'=>true, 'decodeEntities'=>true, 'tl_class'=>'w50 wizard'),
     'sql'                     => "varchar(64) NOT NULL default '0D101F'"
 );
 

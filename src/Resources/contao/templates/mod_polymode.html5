@@ -1,0 +1,25 @@
+<?php
+$buildFile = \FilesModel::findByUuid($this->polymode_buildFile);
+$indexOfSecondLastDot = strpos($buildFile->path, '.', strpos($buildFile->path, '.') + strlen('.'));
+$path = str_split($buildFile->path, $indexOfSecondLastDot)[0];
+?>
+<div class="mod_polymode" style="background-color: <?= "#".$this->polymode_loadingscreen_background ?>;">
+    <canvas id="unity-canvas" data-pixel-art=""></canvas>
+    <script src="<?= $buildFile->path ?>"></script>
+    <script>
+        createUnityInstance(document.querySelector("#unity-canvas"), {
+            dataUrl: "<?= $path . '.data.unityweb' ?>",
+            frameworkUrl: "<?= $path . '.framework.js.unityweb' ?>",
+            codeUrl: "<?= $path . '.wasm.unityweb' ?>",
+            streamingAssetsUrl: "StreamingAssets",
+            companyName: "Duncrow GmbH",
+            productName: "Polymode",
+            productVersion: "1.3",
+        }).then(function (instance) {
+            const canvas = instance.Module.canvas;
+            const container = canvas.parentElement;
+            container.style.width = "100%";
+            container.style.height = "650px";
+        });
+    </script>
+</div>

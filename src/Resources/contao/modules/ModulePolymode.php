@@ -13,8 +13,8 @@ class ModulePolymode extends Module
 	public function generate()
 	{
 	    // If not template is selected in the settings of the module, set default template to polymode
-        if(!$this->polymode_template) $this->polymode_template = 'polymode';
-        if(!$this->polymode_mobileTemplate) $this->polymode_mobileTemplate = 'polymode-mobile';
+        if(!$this->polymode_template) $this->polymode_template = 'mod_polymode';
+        if(!$this->polymode_mobileTemplate) $this->polymode_mobileTemplate = 'mod_polymode_mobile';
 
         // Detect mobile & tablet or desktop, and set template accordingly
         $detect = new Mobile_Detect();
@@ -33,6 +33,9 @@ class ModulePolymode extends Module
 
 			return $objTemplate->parse();
 		}
+
+		// load the polymode.css file
+        $GLOBALS['TL_CSS'][] = '/bundles/polymode/css/polymode.css';
 
 		return parent::generate();
 	}
