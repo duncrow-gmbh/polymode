@@ -25,7 +25,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['polymode_template'] = array
     'inputType'               => 'select',
     'options_callback' => static function ()
     {
-        return Contao\Controller::getTemplateGroup('polymode_');
+        return Contao\Controller::getTemplateGroup('mod_polymode');
     },
     'eval'                    => array('includeBlankOption'=>true, 'chosen'=>true, 'tl_class'=>'w50'),
     'sql'                     => "varchar(64) NOT NULL default ''"
@@ -37,7 +37,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['polymode_mobileTemplate'] = array
     'inputType'               => 'select',
     'options_callback' => static function ()
     {
-        return Contao\Controller::getTemplateGroup('polymode_');
+        return Contao\Controller::getTemplateGroup('mod_polymode_mobile');
     },
     'eval'                    => array('includeBlankOption'=>true, 'chosen'=>true, 'tl_class'=>'w50'),
     'sql'                     => "varchar(64) NOT NULL default ''"
