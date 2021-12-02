@@ -3,6 +3,7 @@
 namespace Duncrow\PolymodeBundle\Module;
 
 use Contao\BackendTemplate;
+use Contao\FilesModel;
 use Contao\Module;
 use Duncrow\PolymodeBundle\Mobile_Detect;
 
@@ -34,8 +35,13 @@ class ModulePolymode extends Module
 			return $objTemplate->parse();
 		}
 
-		// load the polymode.css file
+        $buildFile = FilesModel::findByUuid($this->polymode_buildFile);
+
+        $GLOBALS['TL_CSS'][] = '/bundles/polymode/assets/featherlight-1.7.13/featherlight.min.css';
         $GLOBALS['TL_CSS'][] = '/bundles/polymode/css/polymode.css';
+        $GLOBALS['TL_JAVASCRIPT'][] = '/bundles/polymode/assets/featherlight-1.7.13/featherlight.min.js';
+        $GLOBALS['TL_JAVASCRIPT'][] = $buildFile->path;
+        $GLOBALS['TL_BODY'][] = '<script src="/bundles/polymode/js/polymode.js"></script>';
 
 		return parent::generate();
 	}
@@ -46,5 +52,8 @@ class ModulePolymode extends Module
 	 */
 	protected function compile()
 	{
+        $buildFile = FilesModel::findByUuid($this->polymode_buildFile);
+        $indexOfSecondLastDot = strpos($buildFile->path, '.', strpos($buildFile->path, '.') + strlen('.'));
+        $this->Template->path = str_split($buildFile->path, $indexOfSecondLastDot)[0];
 	}
 }

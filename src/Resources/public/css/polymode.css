@@ -24,3 +24,28 @@
     image-rendering: pixelated;
     -ms-interpolation-mode: nearest-neighbor;
 }
+
+.mod_polymode .featherlight .featherlight-content {
+    padding: 0;
+    border-bottom: 0;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    max-width: none;
+    max-height: none;
+}
+.mod_polymode .featherlight .featherlight-content > iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.mod_polymode .featherlight .featherlight-content .featherlight-close {
+    transition: .22s ease-in-out;
+}
+.mod_polymode .featherlight .featherlight-content .featherlight-close:hover {
+    background: #1bc1ed;
+}
